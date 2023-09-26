@@ -24,14 +24,19 @@ fee_thi = a.loc[:,'q5':'q8'].sum().mean()
 per_jud = a.loc[:,'q9':'q12'].sum().mean()
 sen_int = a.loc[:,'q13':'q16'].sum().mean()
 
-new_row1 = pd.DataFrame({'Extroversion - Introversion': ext_int},index=True)
-new_row2 = {'Feeling - Thinking': fee_thi}
-new_row3 = {'Perceiving - Judging': per_jud}
-new_row4 = {'Sensing - Intuition': sen_int}
+new_rows =      {'Extroversion - Introversion': [ext_int],
+                'Feeling - Thinking': [fee_thi],
+                'Perceiving - Judging': [per_jud],
+                'Sensing - Intuition': [sen_int]}
+
+# new_row1 = {'Extroversion - Introversion': [ext_int]}
+# new_row2 = {'Feeling - Thinking': fee_thi}
+# new_row3 = {'Perceiving - Judging': per_jud}
+# new_row4 = {'Sensing - Intuition': sen_int}
 
 
 mean_a = pd.read_csv('mean_answers.csv',delimiter=',')
-mean_adf = pd.concat([mean_a,new_row1],axis=0,ignore_index=True)
+mean_adf = mean_a.append(new_rows,ignore_index=True)
 print(mean_adf)
 
 
