@@ -19,10 +19,10 @@ a = pd.read_csv('answers.csv', delimiter=',')
 a.loc[len(a)] = answers
 a.to_csv('answers.csv',index=False)
 
-ext_int = ['Extroversion - Introversion',a.loc[:,'q1':'q4'].sum().mean()]
-fee_thi = ['Feeling - Thinking',a.loc[:,'q5':'q8'].sum().mean()]
-per_jud = ['Perceiving - Judging',a.loc[:,'q9':'q12'].sum().mean()]
-sen_int = ['Sensing - Intuition',a.loc[:,'q13':'q16'].sum().mean()]
+ext_int = ['Extroversion - Introversion',a.iloc[-1,0:4].sum() / 4] 
+fee_thi = ['Feeling - Thinking',a.iloc[-1,4:8].sum() / 4]
+per_jud = ['Perceiving - Judging',a.iloc[-1,8:12].sum() / 4]
+sen_int = ['Sensing - Intuition',a.iloc[-1,12:16].sum() / 4]
 
 # new_row1 = pd.DataFrame({'Extroversion - Introversion': ext_int},index=True)
 # new_row2 = {'Feeling - Thinking': fee_thi}
@@ -32,10 +32,13 @@ sen_int = ['Sensing - Intuition',a.loc[:,'q13':'q16'].sum().mean()]
 
 mean_a = pd.read_csv('mean_answers.csv',delimiter=',')
 
-mean_a.loc[len(a)] = ext_int
-mean_a.loc[len(a)] = fee_thi
-mean_a.loc[len(a)] = per_jud
-mean_a.loc[len(a)] = sen_int
+mean_a.loc[len(mean_a)] = ext_int
+mean_a.to_csv('mean_answers.csv',index=False)
+mean_a.loc[len(mean_a)] = fee_thi
+mean_a.to_csv('mean_answers.csv',index=False)
+mean_a.loc[len(mean_a)] = per_jud
+mean_a.to_csv('mean_answers.csv',index=False)
+mean_a.loc[len(mean_a)] = sen_int
 mean_a.to_csv('mean_answers.csv',index=False)
 
 
